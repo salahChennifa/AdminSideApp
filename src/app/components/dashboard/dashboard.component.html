@@ -1,0 +1,38 @@
+<!-- <div class="niveau" *ngFor="let x of TableauLevel; let i = index" [attr.data-index]="i">
+    <h1>nivau {{i + 1}}</h1>
+    <div class="qcm" *ngFor=" let y of x">
+        <form action="">
+            <h2>{{y.question}}</h2>
+            <h2>{{y.answer}}</h2>
+            <ul>
+                <li *ngFor="let option of y.option">{{option}}</li>
+            </ul>
+        </form>
+    </div>
+</div> -->
+
+
+<div class="icon-bar">
+   
+    <a routerLink="/actualités" style=" font-family: FreeMono, monospace;"><i class="fa fa-newspaper-o" aria-hidden="true" >&nbsp;<span style=" font-family: FreeMono, monospace;" >Actualités</span> </i></a>
+    <a routerLink="/quiz-all" style=" font-family: FreeMono, monospace;"><i class="fa fa-level-up" aria-hidden="true"  >&nbsp;<span style=" font-family: FreeMono, monospace;" >Niveaux</span> </i></a>
+    <a routerLink="/users/list_attente" style=" font-family: FreeMono, monospace;"><i class="fa fa-spinner" aria-hidden="true" >&nbsp;<span style=" font-family: FreeMono, monospace;" >Liste d'attentes</span></i></a>
+</div>
+<br>
+    <div class="row">
+
+    
+    <div class="col-md-12">
+        <app-users></app-users>
+    </div>
+    
+</div>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+<p></p>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <h4 class="text-right">
+            Total : {{searchClients.length}}
+        </h4>
+    </div>
+</div>
+
+<p></p>
+<div class="card">
+    
+    <div class="card-body">
+        <div class="row">
+           
+            <div class="col-md-12">
+                 <input type="text" class="form-control" placeholder="Rechercher les utilisateurs" (keyup)="Search(query.value)" #query>
+            </div>
+        </div>
+      
+
+      
+            <p></p>
+            <p></p>
+            <br>
+        <table class="table table-striped ">
+            <thead >
+                <tr>
+                    <th >Name</th>
+                    <th>Telephone</th>
+                    <th>Naissance</th>
+                    <th>Email</th>
+                    <th>Points</th>
+                    <th>Niveau</th>
+                    <th>Etat</th>
+
+                    <th></th>
+                    <th></th>
+                    <!-- <th></th> -->
+
+
+                </tr>
+                </thead>
+               
+                <tbody>
+                    <tr *ngFor="let user of searchClients " >
+                        <td scope="row">{{user.name}} </td>
+                        <td>+212{{user.Phone}}</td>
+                        <td>{{user.BirthDate }}</td>
+                        <td>{{user.email}}</td>
+                        <td>{{user.nbrPoints}}</td>
+                        <td>{{user.niveauUser}}</td>
+                        <td>{{user.qcmState}}</td>
+
+
+                        <td class="text-right">
+                            <a routerLink="/user/{{user.userId}}" class="btn btn-info"><i class="fa fa-info-circle" aria-hiden="true"></i></a>&nbsp;
+                        </td>
+
+                        <td class="text-right">
+                           
+                            <!-- <i class="fa fa-times" aria-hidden="true"  *ngIf="!user.accepted"></i> -->
+                            <a  class="badge badge-danger"><span  aria-hiden="true"  *ngIf="!user.accepted">{{message2}}</span></a>&nbsp;
+                            <a  class="badge badge-success"><span  aria-hiden="true" *ngIf="user.accepted" >approuvé</span></a>&nbsp;
+
+                        </td>
+                      
+
+                    </tr>
+                    
+                </tbody>
+        </table>
+    </div>
+</div>

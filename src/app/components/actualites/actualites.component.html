@@ -1,0 +1,154 @@
+<!-- TODO: create a custom form -->
+<div data-id="{{listNew.id}}" class="edit-actualite" *ngIf="edited">
+  <div   id="modal-basic-title" >  
+    <h4> Edit  Actualité </h4>
+  </div>
+  <div class="modal-body">
+    <form #f="ngForm" (ngSubmit)="onEdit($event)">
+      <div class="form-group">
+        <!-- <label for="dateOfBirth">Choisir L'image :</label>
+        <div class="input-group">
+          <input id="dateOfBirth" [(ngModel)]="addNew.image" [ngModelOptions]="{standalone: true}" class="form-control"  type="file" >                
+        </div> -->
+        <br>
+        <label for="title">Saisir le titre : </label>
+        <div class="input-group">
+          <input name="title" id="title" value="{{listNew.title}}" class="form-control" type="text">                
+        </div>
+        <br>
+        
+        <label for="body">Saisir le paragraph :</label>
+        <div class="input-group">
+          <textarea name="body" id="body" value="{{listNew.body}}"  class="form-control"  type="file" >  
+              </textarea>          
+        </div>
+        <!-- <div data-id = "{{listNew.date}}" class="date-info">
+          <label for="body">date : {{listNew.date | }}</label>
+        </div> -->
+        <div class="modal-footer">
+          <button type="text" class="btn btn-outline-success btn-block" >Save</button>
+        </div>
+      </div>
+      
+    </form>
+  </div>
+</div>
+
+
+
+<button class="btn btn-success btn-block" (click)="open(content)">
+    &nbsp; <i class="fa fa-plus" aria-hidden="true">&nbsp;</i>Ajouté Actualité
+</button>
+<br>
+
+
+<!-- Her let create a static template -->
+   <div data-id="{{list.id}}" *ngFor="let list of lists;  let i = index " class="blog-card">
+    <div class="meta">
+      <div class="photo" style="background-image: url('../../../assets/icons/care.png')"></div>
+      <ul class="details">
+        <li class="author"><a href="#">Admin Name</a></li>
+        <li class="date">{{list.date | date: 'medium'}}</li>
+        <!-- <li class="tags">
+         
+          <ul>
+            <li><a href="#">Learn</a></li>
+            <li><a href="#">Code</a></li>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+          </ul>
+        </li> -->
+        <li class="heart"> &nbsp;{{list.likeNew}}</li>
+      </ul>
+    </div>
+    <div class="description">
+      <h1>{{list.title}}</h1>
+      <!-- <h2>Opening a door to the future</h2> -->
+      <p> {{list.body}}</p>
+      <!-- TODO: Add read more -->
+      <p class="read-more">
+        <a (click)="openEdit(i)">Edit</a>
+      </p>
+      <p class="remove">
+          <a (click)="removeAcutualite(list.id)">Remove</a>
+      </p>
+    </div>
+  </div>
+
+
+<!--  -->
+
+<!-- <div class="container">
+    <div class="row" *ngFor="let list of lists">
+        <div class="col-lg-12 mb-4">
+            <div class="card" >
+                <img class="card-img-top" src="../../../assets/icons/care.png" style=" display: block;
+                margin-left: auto;
+                margin-right: auto;
+                width: 30%; " alt="">
+<hr>
+                <div class="card-body">
+                    <h5 class="card-title">{{list.title}}</h5>
+                    <p class="card-text" >
+                        {{list.body}}
+                    </p>
+
+                   
+                    <a  class="pull-right" style="text-decoration: none;">
+                        {{list.date}} 
+                    </a>
+                    <a  class="btn btn-outline-secondary btn-sm">
+                        <i class="fa fa-heart"> &nbsp;{{list.likeNew}}</i></a>
+                </div>
+            </div>
+        </div>
+     
+    </div>
+
+  </div> -->
+
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+            
+          <h4 class="modal-title text-center"  id="modal-basic-title"> Add Actualité </h4>
+          
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <br>
+              <label for="dateOfBirth">Saisir le titre : </label>
+              <div class="input-group">
+                <input id="dateOfBirth" [(ngModel)]="addNew.title" [ngModelOptions]="{standalone: true}" class="form-control" type="text" >                
+              </div>
+              <br>
+              
+              <label for="dateOfBirth">Saisir le paragraph :</label>
+              <div class="input-group">
+                <textarea id="dateOfBirth" [(ngModel)]="addNew.body" [ngModelOptions]="{standalone: true}" class="form-control"  type="file" >  
+                    </textarea>          
+              </div>
+              <!-- <div class="input-group">
+                
+                <input id="dateOfBirth" [(ngModel)]="addNew.date" [ngModelOptions]="{standalone: true}" class="form-control" placeholder="hh:mm:ss" type="text" >  
+                  
+              </div> -->
+            </div>
+          </form>
+        </div>
+      
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-success btn-block" (click)="onSubmit()" >Save</button>
+        </div>
+
+        <div style="text-align: center;" class="alert alert-success" role="alert" *ngIf="added" >
+          Actualité Added successfully
+         </div>
+      </ng-template>
+
+
+    

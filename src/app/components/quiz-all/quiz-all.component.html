@@ -1,0 +1,139 @@
+<div id="add-level">
+    <button (click)="addNewLevel($event)" class="btn btn-primary">Add A New Level</button> 
+ </div>
+ <!-- List all levels -->
+ <ul class="menu">
+    <li (click)="niveauClick($event)" data-id="{{item.key}}" *ngFor="let item of allNiveau | keyvalue" class="list level"><a >Niveau {{item.key}} 
+       <button class="btn btn-primary btn-sm" (click)="addLevel($event)"  style="float: right; margin-right: 5%;">Add Qcm</button> 
+       <button class="btn btn-warning btn-sm" (click)="removeLevel($event)"  style="float: right; margin-right: 10px;">Remove</button> </a>
+       <ul class="items">
+          <li (click)="qcmClick($event)"  *ngFor="let x of item.value;  let i = index" data-id="{{i}}"   style="margin-right: 10px;" class="list qcm"><a > <button class="btn btn-primary btn-sm" (click)="editClick($event)" style="float: right; margin-right: 4%;">Edit</button>QCM {{i+1}}</a> 
+             <ul  class="items">
+                <li> <a  > Points :  {{x.point}}</a></li>
+                <li> <a  > Tag : {{x.tag}}</a></li>
+                <li> <a  > Qestion : {{x.question}}</a></li>
+                <li> <a  > Reponse : {{x.answer}}</a></li>
+                <li (click)="optionClick($event)" style="margin-left: 10px;" class="list"><a >Options</a> 
+                   <ul  class="items">
+                      <li *ngFor="let y of x.option"> <a  > {{y}}</a></li>
+                   </ul>
+                </li>
+             </ul>
+          </li>
+       </ul>
+    </li>
+ </ul>
+ <!-- EDIT QCM INSIDE LEVEL -->
+ <div class="top-class" *ngIf="edited" data-id="{{selectQcm['level']}}">
+   <form #f="ngForm" (ngSubmit)="submit($event)">
+    <div class="form-edit-qcm" data-id="{{selectQcm['qcmid']}}">
+       <div class="subtitle">Let's Edit qcm {{+selectQcm['qcmid'] + 1}}  in level {{selectQcm['level']}}!</div>
+       <div class="input-container ic1">
+         <input
+         name="points"
+          id="points"  class="input" value="{{selectQcm['qcm'].point}}" type="text" placeholder=" " />
+         <div class="cut"></div>
+         <label for="points" 
+         class="placeholder"
+         >Points</label>
+       </div>
+       <div class="input-container ic2">
+         <input name="tag" id="tag" class="input"
+         value="{{selectQcm['qcm'].tag}}"
+         type="text" placeholder=" " />
+         <div class="cut"></div>
+         <label for="tag" class="placeholder">Tag</label>
+       </div>
+       <div class="input-container ic2">
+         <input name="question" id="question" class="input"
+         value="{{selectQcm['qcm'].question}}"
+         type="text" placeholder=" " />
+         <div class="cut cut-short"></div>
+         <label for="question" class="placeholder">Qeustion</label>
+       </div>
+        <div class="input-container ic2">
+          <input name="response" id="response" class="input"
+          value="{{selectQcm['qcm'].answer}}"
+          type="text" placeholder=" " />
+          <div class="cut cut-short"></div>
+          <label for="response" class="placeholder">Response</label>
+        </div>
+ 
+        <div class="input-container ic2">
+          <input name="option" id="option" class="input input-option"
+          type="text" placeholder=" " id="input-add" />
+          <button (click)="addOption($event)" class="btn btn-primary testButton" style="float: right;">Add</button>
+          <div class="cut .cut-short-option"></div>
+          <label for="option" class="placeholder">Add Options</label>
+        </div>
+        <div  class=".input-container-option ic2">
+          <ul id="list">
+             <li class="listOfQcm" *ngFor="let y of updateQcmOptions;  let i = index" data-id="{{i}}">{{y}}
+                <button class="btn btn-danger" (click)="removeQcmItem($event)" data-button-delete>Delete</button>
+             </li>
+          </ul>
+        </div>
+       <button  style="margin-top: 10px;" type="text" class="submit">Update</button>
+     </div>
+   </form>
+ </div>
+ 
+ <!-- ADD QCM INSIDE LEVEL -->
+ 
+ <div class="row">
+<div class="col-md-12 ">
+    <div class="top-class  justify-content-center" *ngIf="newLevel" data-id="{{selectQcm['level']}}" >
+        <form #f="ngForm" (ngSubmit)="submitLevel($event)">
+         <div class="form-edit-qcm">
+            <div class="subtitle">Let's a new QCM!</div>
+            <div class="input-container ic1">
+              <input
+              name="points"
+               id="points"  class="input"  type="text" placeholder=" " style="background-color: #8293a3;" />
+              <div class="cut"></div>
+              <label for="points" 
+              class="placeholder"
+              >Points</label>
+            </div>
+            <div class="input-container ic2">
+              <input name="tag" id="tag" class="input"
+              type="text" placeholder=" " style="background-color: #8293a3;" />
+              <div class="cut"></div>
+              <label for="tag" class="placeholder">Tag</label>
+            </div>
+            <div class="input-container ic2">
+              <input name="question" id="question" class="input"
+              type="text" placeholder=" " style="background-color: #8293a3;" />
+              <div class="cut cut-short"></div>
+              <label for="question" class="placeholder">Qeustion</label>
+            </div>
+             <div class="input-container ic2">
+               <input name="response" id="response" class="input"
+               type="text" placeholder=" " style="background-color: #8293a3;" />
+               <div class="cut cut-short"></div>
+               <label for="response" class="placeholder">Response</label>
+             </div>
+      
+             <div class="input-container ic2">
+               <input name="option" id="option" class="input input-option"
+               type="text" placeholder=" " id="input-add" style="background-color: #8293a3;"/>
+               <button (click)="addOption($event)" class="btn btn-primary testButton" style="float: right;">Add</button>
+               <div class="cut .cut-short-option"></div>
+               <label for="option" class="placeholder">Add Options</label>
+             </div>
+             <div  class=".input-container-option ic2">
+               <ul id="list">
+                  <li  class="listOfQcm" *ngFor="let y of updateQcmOptions;  let i = index">{{y}}
+                     <button class="btn btn-danger" (click)="removeQcmItem($event)" data-button-delete>Delete</button>
+                  </li>
+               </ul>
+             </div>
+            <button  style="margin-top: 10px;" type="text" class="submit">Add an New QCM</button>
+          </div>
+        </form>
+      </div>
+     
+</div>
+   
+ </div>
+ 

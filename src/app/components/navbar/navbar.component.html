@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-sm navbar-dark ">
+    <a class="navbar-brand" routerLink="/"><img src="../../../assets/icons/care.png" class="responsive" style="height: 50px; width: 50px;" alt=""> </a>
+    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavId">
+        &nbsp;&nbsp;&nbsp;
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active" >
+                <a class="nav-link" routerLink="/dashboard" *ngIf="isLogged">Dashboard <span class="sr-only">(current)</span></a>
+            </li>
+            
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+          
+            <li class="nav-item" *ngIf="!isLogged">
+                <a class="nav-link" routerLink="/login" >Login</a>
+            </li>
+            
+            <li class="nav-item" *ngIf="isLogged">
+                <a  class="nav-link" (click)="onLogout()" >Logout</a>
+            </li>
+            <!-- <li class="nav-item" >
+                <a  class="nav-link" >Logout</a>
+            </li> -->
+           
+        </ul>
+       
+    </div>
+
+
+    
+</nav>
+
+
+
+<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+   
+  </div>
+
+
+  
